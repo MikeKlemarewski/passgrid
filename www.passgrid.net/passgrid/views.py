@@ -20,6 +20,10 @@ from .utils import generate_token, send_verification_email, \
 # Views
 ###
 
+def passgrid(request):
+    return render(request, "passgrid.html")
+
+
 def login(request):
     '''
     An example login page using Passgrid.

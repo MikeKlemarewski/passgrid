@@ -5,8 +5,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns("passgrid.views",
+    # Example gmail logins.
     url(r'^$', "login"),
     url(r'^accounts/login/$', "login"),
+
+    # Passgrid login.
+    url(r'^passgrid/$', "passgrid"),
+
 
     url(r'^protected/$', "protected"),
     url(r'^signup/$', "signup"),
