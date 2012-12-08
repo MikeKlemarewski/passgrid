@@ -1,0 +1,10 @@
+.block {
+  width: 25%;
+  display: inline-block;
+  height:125px;
+  box-sizing: border-box;
+}
+
+.row {
+  display:inline;
+}

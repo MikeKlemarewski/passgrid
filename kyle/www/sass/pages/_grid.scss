@@ -1,0 +1,13 @@
+body.grid {
+    background: black;
+    #grid {
+        div {
+            float: left;
+            width: 25%;
+            height: 0;
+            padding-bottom: 25%;
+
+            background: red;
+        }
+    }
+}
