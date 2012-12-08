@@ -1,0 +1,7 @@
+{
+    "name":"photo_gen",
+    "version":"0.0.1",
+    "dependencies":{
+        "express":">=0.0.1"
+    }
+}

@@ -13,12 +13,16 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm, LoginForm
 from .models import Token
 from .utils import generate_token, send_verification_email, \
-                    verify_passgrid
+                    verify_passgrid, json_response
 
 
 ###
 # Views
 ###
+
+def passgrid(request):
+    return render(request, "passgrid.html")
+
 
 def login(request, template_name="login.html"):
     '''
@@ -37,12 +41,19 @@ def login(request, template_name="login.html"):
             backend = get_backends()[0]
             user.backend = '%s.%s' % (backend.__module__, backend.__class__.__name__)
             django_login(request, user)
-            return HttpResponseRedirect("/protected/")
 
+            next = "/protected/"
+
+            if request.is_ajax():
+                return json_response({next: next})
+            return HttpResponseRedirect(next)
 
         errors = form._errors.setdefault(forms.forms.NON_FIELD_ERRORS,
                                          forms.util.ErrorList())
         errors.append(unicode("YOU MESSED UP."))
+
+    if request.is_ajax():
+        return json_response({}, 403)
 
 
     context = {
@@ -84,7 +95,7 @@ def signup(request, template_name="home.html"):
                                                    defaults=defaults)
 
         try:
-            send_verification_email(user)
+            send_verification_email(request, user)
         except Exception, err:
             errors = form._errors.setdefault(forms.forms.NON_FIELD_ERRORS,
                                              forms.util.ErrorList())
