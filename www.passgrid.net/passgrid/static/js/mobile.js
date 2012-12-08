@@ -36,7 +36,18 @@ function createGrid(token) {
      }
    }     
 }
-token = generateToken(4,4);
+
+function getToken() {
+  if( localStorage["token"] == undefined) {
+    token = generateToken(4,4);
+    localStorage["token"] = JSON.stringify(token);
+  }
+  var storedToken = localStorage["token"];
+  var token = JSON.parse(storedToken);
+  return token;
+}
+
+var token = getToken();
 createGrid(token);
 
 });
