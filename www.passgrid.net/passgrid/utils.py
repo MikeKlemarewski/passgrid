@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import render_to_string
@@ -20,12 +22,14 @@ def generate_token(user):
     return token, created
 
 
-def send_verification_email(user):
+def send_verification_email(request, user):
     '''
     Send the email verification email to `user`.
 
     '''
     context = {
+        "protocol": "http",
+        "host": request.get_host(),
         "uid": int_to_base36(user.pk),
         "token": token_generator.make_token(user)
     }
@@ -41,4 +45,15 @@ def send_verification_email(user):
 
 
 def verify_passgrid(user, f):
+    '''
+    Returns `True` if PassGrid `f` matches `user`'s token.
+
+    '''
     return True
+
+def json_response(data, status_code=200):
+    data["status"] = status_code
+    body = json.dumps(data)
+    response = HttpResponse(body, mimetype="application/json")
+    response.status_code = status_code
+    return response
