@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block body %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+<body class="signin">
+
+    <div class="row">
+        <div class="twelve columns">
+            <h2>PassGrid</h2>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="eight columns">
+            <div class="panel" id="authpanel">
+                <div id="authvideo">
+                    <video id="video" autoplay></video>
+                    <div class="overlay visible">
+                        <div class="verify">
+                            <a href="#" class="button large success">My phone is my passport, verify me.</a>
+                        </div>
+                        <div class="gridoverlay">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="five columns">
+                        <p class="donthavephone"><a href="#">Don't have your phone?</a></p>
+                    </div>
+                    <div class="seven columns">
+                        <form class="custom">
+                            <label for="rememberme">
+                                <input type="checkbox" name="rememberme" id="rememberme">
+                                Remember this computer for 30 days
+                            </label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four columns">
+            <div class="howtouse">
+                <h3><small>How do I use PassGrid?</small></h3>
+                <p>Just open PassGrid on your device and hold it up to your computer's camera. Line up the grid and click 'Verify' to sign in.</p>
+            </div>
+            <hr>
+            <div class="donthavepassgrid">
+                <h3><small>Don't have PassGrid?</small></h3>
+                <p><strong>Sign up in seconds.</strong> Click the <span class="label">Send</span> button below and we'll send you an email to verify you are who you say you are. You'll get a link in your inbox—open it on your phone and you can sign in right away.</p>
+                <a href="#" class="button">Send me a PassGrid</a>
+            </div>
+        </div>
+    </div>
+
+    <h1>LOGIN TO YOUR SECURE GMAIL</h1>
+
+
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" />
+    </form>
+
+
+    <a href="/protected/">PROTECTED</a>
+
+{% endblock %}

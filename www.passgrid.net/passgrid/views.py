@@ -20,7 +20,11 @@ from .utils import generate_token, send_verification_email, \
 # Views
 ###
 
-def login(request):
+def passgrid(request):
+    return render(request, "passgrid.html")
+
+
+def login(request, template_name="login.html"):
     '''
     An example login page using Passgrid.
 
@@ -56,7 +60,7 @@ def login(request):
         "form": form
     }
 
-    return render(request, "login.html", context)
+    return render(request, template_name, context)
 
 @login_required
 def protected(request):
@@ -65,6 +69,12 @@ def protected(request):
 
     '''
     return render(request, "protected.html")
+
+
+def home(request):
+    return login(request, template_name="home.html")
+
+
 
 def signup(request, template_name="signup.html"):
     '''

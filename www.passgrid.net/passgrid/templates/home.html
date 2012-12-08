@@ -18,6 +18,7 @@ video, canvas{
 
         <input type="submit" id="snap" value="Login" />
         <input type="submit" id="upload" value="Send to Server" onclick="return sendForm(this.form)">
+        {% csrf_token %}
 
     </form>
 
