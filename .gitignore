@@ -1,2 +1,7 @@
-.DS_Store
+.DS_STORE
+*.pyc
+
+# Virutal Env
+/www.passgrid.net/venv/
+/www.passgrid.net/passgrid.db
 /kyle/www/.sass-cache/
