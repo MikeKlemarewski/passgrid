@@ -6,6 +6,40 @@
   <title>Gmail: Email from Google</title>
   <meta name="description" content="10+ GB of storage, less spam, and mobile access. Gmail is email that&#39;s intuitive, efficient, and useful. And maybe even fun.">
   <link rel="icon" type="image/ico" href="//mail.google.com/favicon.ico">
+
+<!-- Kyle's Styles -->
+
+<style type="text/css">
+  body.fakelogin #gaia_loginform {
+    padding-bottom: 15px;
+  }
+
+  body.fakelogin #signIn {
+
+    display: block;
+    width: 100%;
+    height: 54px;
+    font-size: 16px;
+
+    border: 1px solid #54B148;
+    text-shadow: 2px 2px 3px rgba(62,134,54,0.65);
+
+    /* Firefox v3.6+ */
+    background-image:-moz-linear-gradient(50% 0% -90deg,rgb(98,189,86) 0%,rgb(84,177,72) 100%); 
+    /* safari v4.0+ and by Chrome v3.0+ */
+    background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(98,189,86)),color-stop(1, rgb(84,177,72)));
+    /* Chrome v10.0+ and by safari nightly build*/
+    background-image:-webkit-linear-gradient(-90deg,rgb(98,189,86) 0%,rgb(84,177,72) 100%);
+    /* Opera v11.10+ */
+    background-image:-o-linear-gradient(-90deg,rgb(98,189,86) 0%,rgb(84,177,72) 100%);
+    /* IE v10+ */
+    background-image:-ms-linear-gradient(-90deg,rgb(98,189,86) 0%,rgb(84,177,72) 100%);
+    background-image:linear-gradient(-90deg,rgb(98,189,86) 0%,rgb(84,177,72) 100%);
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff62bd56,endColorstr=#ff54b148,GradientType=0)";
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff62bd56,endColorstr=#ff54b148,GradientType=0);
+  }
+</style>
+
 <style type="text/css">
   html, body, div, h1, h2, h3, h4, h5, h6, p, img, dl,
   dt, dd, ol, ul, li, table, tr, td, form, object, embed,
@@ -1366,7 +1400,7 @@
   }
 </style>
   </head>
-  <body>
+  <body class="fakelogin">
   <div class="wrapper">
   <div class="google-header-bar">
   <div class="header content clearfix">
@@ -1470,16 +1504,8 @@
       
     >
 </div>
-<div class="passwd-div">
-  <label for="Passwd"><strong class="passwd-label">Password</strong></label>
-  <input type="password" name="Passwd" id="Passwd"
-    
-    
-    
-  >
-</div>
   <input type="submit" class="g-button g-button-submit" name="signIn" id="signIn"
-      value="Sign in">
+      value="Sign in with PassGrid">
   <label class="remember" onclick="">
   <input type="checkbox" 
   name="PersistentCookie" id="PersistentCookie" value="yes"
