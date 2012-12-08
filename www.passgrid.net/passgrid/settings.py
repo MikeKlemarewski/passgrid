@@ -6,6 +6,11 @@ PROJECT_ROOT = os.path.join(os.path.sep, *os.path.abspath(__file__).split(os.pat
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+### THINGS WE MIGHT CHANGE:
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
 DATABASES = {
     'default': {
