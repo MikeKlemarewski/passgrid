@@ -1,6 +1,8 @@
 @import "foundation/common/ratios";
-@import "defaults";
-@import "pages";
+// Default
+@import "compass";
+@import "compass/css3"; 
+@import "compass/utilities";
 
 // Settings file containing Foundation defaults
 
@@ -32,7 +34,7 @@
 // $headerFontWeight: bold;
 // $headerFontStyle: normal;
 // $headerFontColor: #222;
-// $bodyFontFamily: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+// $bodyFontFamily: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $bodyFontWeight: normal;
 // $bodyFontStyle: normal;
 // $bodyFontColor: $txtColor;

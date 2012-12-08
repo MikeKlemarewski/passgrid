@@ -14,11 +14,13 @@
 
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="stylesheets/app.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
 
 	<script src="javascripts/foundation/modernizr.foundation.js"></script>
 
 </head>
-<body class="signup">
+<body class="signin">
 
 	<div class="row">
 		<div class="twelve columns">
@@ -29,19 +31,43 @@
 
 	<div class="row">
 		<div class="eight columns">
-			<p>Open PassGrid on your phone and hold your phone up to your computer's camera to log in!</p>
-			<h5>Don't have your phone? No worries</h5>
-
-			<div class="panel">
-				Video screen goes here
+			<div class="panel" id="authpanel">
+				<div id="authvideo">
+					<video id="video" autoplay></video>
+					<div class="overlay visible">
+						<div class="verify">
+							<a href="#" class="button large success">My phone is my passport, verify me.</a>
+						</div>
+						<div class="gridoverlay">
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="five columns">
+						<p class="donthavephone"><a href="#">Don't have your phone?</a></p>
+					</div>
+					<div class="seven columns">
+						<form class="custom">
+							<label for="rememberme">
+								<input type="checkbox" name="rememberme" id="rememberme">
+								Remember this computer for 30 days
+							</label>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="four columns">
+			<div class="howtouse">
+				<h3><small>How do I use PassGrid?</small></h3>
+				<p>Just open PassGrid on your device and hold it up to your computer's camera. Line up the grid and click 'Verify' to sign in.</p>
+			</div>
+			<hr>
 			<div class="donthavepassgrid">
 				<h3><small>Don't have PassGrid?</small></h3>
-				<hr>
-				<p>If you haven't signed up with PassGrid before, go to <a href="http://www.passgrid.com"><span class="label secondary radius">www.passgrid.com</span></a> on your phone and enter your email address.</p>
-				<a href="#" class="button">I'm lazy, let me scan a QR code</a>
+				<p><strong>Sign up in seconds.</strong> Click the <span class="label">Sign Up</span> button below and we'll send you an email to verify you are who you say you are. You'll get a link in your inbox &emdash; open it on your phone and you can sign in right away.</p>
+				<a href="#" class="button">Sign up now</a>
 			</div>
 		</div>
 	</div>
@@ -61,11 +87,7 @@
 	
 	<script src="javascripts/foundation/jquery.foundation.buttons.js"></script>
 	
-	<script src="javascripts/foundation/jquery.foundation.clearing.js"></script>
-	
 	<script src="javascripts/foundation/jquery.foundation.forms.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.joyride.js"></script>
 	
 	<script src="javascripts/foundation/jquery.foundation.magellan.js"></script>
 	
@@ -89,5 +111,6 @@
   <!-- Application Javascript, safe to override -->
   <script src="javascripts/foundation/app.js"></script>
   <script>document.write('<script src="http://localhost:35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <script src="javascripts/passgrid/app.js"></script>
 </body>
 </html>

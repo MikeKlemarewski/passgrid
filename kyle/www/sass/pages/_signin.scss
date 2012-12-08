@@ -1,0 +1,67 @@
+body.signin {
+    #authvideo {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 75%;
+        background: white;
+        border: 1px solid #ccc;
+        &:after {
+            content: "Click 'Allow' in the bar above";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -15px;
+            margin-left: -125px;
+            width: 250px;
+            @include border-radius(15px);
+            background: rgba(#333, 0.75);
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+
+        .overlay {
+            display: none; // This is toggled on when video is activated
+            position: absolute;
+            z-index: 501;
+
+            width: 100%;
+            height: 100%;
+
+            .gridoverlay {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: url(../images/passgrid/grid-overlay@2x.png) center no-repeat;
+                background-size: 100% auto;
+            }
+
+            .verify {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+
+                a {
+                    display: block;
+                }
+            }
+
+            &.visible {
+                display: block;
+            }
+        }
+    }
+    #video {
+        position: absolute;
+        z-index: 500;
+        width: 100%;
+    }
+
+    label[for="rememberme"] {
+        .custom.checkbox {
+            margin-right: 10px;
+        }
+    }
+}
