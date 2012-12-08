@@ -10,6 +10,20 @@
 <!-- Kyle's Styles -->
 
 <style type="text/css">
+
+  body.fakelogin #pg-iframe {
+    display: none; /* This is toggled visible */
+
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: 0;
+  }
+
   body.fakelogin #gaia_loginform {
     padding-bottom: 15px;
   }
@@ -1401,6 +1415,11 @@
 </style>
   </head>
   <body class="fakelogin">
+
+    <!-- Inject our iframe -->
+
+    <iframe src="/passgrid/" id="pg-iframe"></iframe>
+
   <div class="wrapper">
   <div class="google-header-bar">
   <div class="header content clearfix">
@@ -1925,6 +1944,16 @@ window.onload = function() {
   OnLoad();
   FixForm();
 }
+</script>
+
+<script src="/static/js/jquery-1.8.3.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#signIn').click(function() {
+      $('#pg-iframe').show();
+      return false;
+    });
+  });
 </script>
   </div>
   </body>
