@@ -17,3 +17,23 @@ GitHub: https://github.com/kpeatt/passgrid
     . venv/bin/activate
     pip install -r requirements.pip
     ./manage.py syncdb
+    ./manage.py runserver
+    open http://127.0.0.1:8000
+
+
+
+TODO:
+
+
+1. User arrives at page, enter your email address.
+2. Verifcation email.
+3. api
+
+
+
+
+- database on heroku
+- stmp on heroku?
+- 3. where are we gonna run the 'open calasis' server?
+- vidoe capture
+- other site
