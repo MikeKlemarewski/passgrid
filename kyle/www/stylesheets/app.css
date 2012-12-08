@@ -1,23 +1,4 @@
 @charset "UTF-8";
-/* line 3, ../sass/pages/_auth.scss */
-body.auth #enter-email input[type="email"] {
-  padding: 25px;
-  font-size: 18px;
-}
-
-/* line 1, ../sass/pages/_grid.scss */
-body.grid {
-  background: black;
-}
-/* line 4, ../sass/pages/_grid.scss */
-body.grid #grid div {
-  float: left;
-  width: 25%;
-  height: 0;
-  padding-bottom: 25%;
-  background: red;
-}
-
 /* Requires: normalize.css */
 /* Global Reset & Standards ---------------------- */
 /* line 5, ../../../../../../../../Library/Ruby/Gems/1.8/gems/zurb-foundation-3.2.3/scss/foundation/common/_globals.scss */
@@ -5960,4 +5941,155 @@ table.hide-for-medium {
   .top-bar ul > li.has-button a.button {
     margin: 0;
   }
+}
+/* line 1, ../sass/_defaults.scss */
+body {
+  font-family: 'Open Sans';
+}
+
+/* line 9, ../sass/_defaults.scss */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Open Sans', 'Helvetica', Arial, sans-serif;
+}
+
+/* line 3, ../sass/pages/_auth.scss */
+body.auth #enter-email input[type="email"] {
+  padding: 25px;
+  font-size: 18px;
+}
+
+/* line 1, ../sass/pages/_grid.scss */
+body.grid {
+  background: black;
+}
+/* line 4, ../sass/pages/_grid.scss */
+body.grid .top-bar {
+  padding: 0 10px;
+}
+/* line 6, ../sass/pages/_grid.scss */
+body.grid .top-bar h1.logo {
+  color: white;
+  font-size: 14px;
+}
+/* line 11, ../sass/pages/_grid.scss */
+body.grid #grid {
+  padding: 0;
+}
+/* line 13, ../sass/pages/_grid.scss */
+body.grid #grid div {
+  float: left;
+  width: 25%;
+  height: 0;
+  padding-bottom: 25%;
+}
+/* line 19, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(1) {
+  background: lightblue;
+}
+/* line 22, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(2) {
+  background: brown;
+}
+/* line 25, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(3) {
+  background: orange;
+}
+/* line 28, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(4) {
+  background: CornflowerBlue;
+}
+/* line 31, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(5) {
+  background: coral;
+}
+/* line 34, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(9) {
+  background: lightblue;
+}
+/* line 37, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(8) {
+  background: brown;
+}
+/* line 40, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(7) {
+  background: lightblue;
+}
+/* line 43, ../sass/pages/_grid.scss */
+body.grid #grid div:nth-child(6) {
+  background: CornflowerBlue;
+}
+
+/* line 2, ../sass/pages/_signin.scss */
+body.signin #authvideo {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  background: white;
+  border: 1px solid #ccc;
+}
+/* line 9, ../sass/pages/_signin.scss */
+body.signin #authvideo:after {
+  content: "Click 'Allow' in the bar above";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -125px;
+  width: 250px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+  background: rgba(51, 51, 51, 0.75);
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+/* line 24, ../sass/pages/_signin.scss */
+body.signin #authvideo .overlay {
+  display: none;
+  position: absolute;
+  z-index: 501;
+  width: 100%;
+  height: 100%;
+}
+/* line 32, ../sass/pages/_signin.scss */
+body.signin #authvideo .overlay .gridoverlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../images/passgrid/grid-overlay@2x.png) center no-repeat;
+  background-size: 100% auto;
+}
+/* line 41, ../sass/pages/_signin.scss */
+body.signin #authvideo .overlay .verify {
+  position: absolute;
+  z-index: 502;
+  bottom: 0;
+  width: 100%;
+}
+/* line 47, ../sass/pages/_signin.scss */
+body.signin #authvideo .overlay .verify a {
+  display: block;
+}
+/* line 52, ../sass/pages/_signin.scss */
+body.signin #authvideo .overlay.visible {
+  display: block;
+}
+/* line 57, ../sass/pages/_signin.scss */
+body.signin #video {
+  position: absolute;
+  z-index: 500;
+  width: 100%;
+}
+/* line 64, ../sass/pages/_signin.scss */
+body.signin label[for="rememberme"] .custom.checkbox {
+  margin-right: 10px;
 }

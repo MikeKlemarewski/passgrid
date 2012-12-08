@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
     // minimum 6 chars long
     function decimalToHexString(number)
     {
@@ -13,7 +13,7 @@ $(document).ready(function(){
          }
         return hexStr;
     }
-  
+
   function generateToken( numRows, numCols) {
   var token = new Array();
   for( i = 0; i < numRows; i++ ) {
@@ -32,9 +32,9 @@ function createGrid(token) {
       var blockStr = ".block"+ (i+1) + (j+1);
        var colorValStr = decimalToHexString(token[i][j]);
        // console.log( blockStr + ": #" + colorValStr);
-       $(blockStr).css( "background-color", "#" + colorValStr); 
+       $(blockStr).css( "background-color", "#" + colorValStr);
      }
-   }     
+   }
 }
 
 function getToken() {
