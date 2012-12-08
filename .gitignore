@@ -5,3 +5,6 @@
 /www.passgrid.net/venv/
 /www.passgrid.net/passgrid.db
 /kyle/www/.sass-cache/
+/www.passgrid.net/photo_gen/images/
+/www.passgrid.net/photo_gen/node_modules/
+/www.passgrid.net/photo_gen/lib/phantomjs
