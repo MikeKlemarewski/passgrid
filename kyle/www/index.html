@@ -10,7 +10,7 @@
 	<!-- Set the viewport width to device width for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title>Welcome to Foundation</title>
+	<title>PassGrid</title>
 
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="stylesheets/app.css">
@@ -18,7 +18,7 @@
 	<script src="javascripts/foundation/modernizr.foundation.js"></script>
 
 </head>
-<body>
+<body class="signup">
 
 	<div class="row">
 		<div class="twelve columns">
@@ -28,12 +28,21 @@
 	</div>
 
 	<div class="row">
-		<div class="eight columns panel">
-			Video screen goes here
+		<div class="eight columns">
+			<p>Open PassGrid on your phone and hold your phone up to your computer's camera to log in!</p>
+			<h5>Don't have your phone? No worries</h5>
+
+			<div class="panel">
+				Video screen goes here
+			</div>
 		</div>
 		<div class="four columns">
-			<h3>Don't have PassGrid?</h3>
-			<hr>
+			<div class="donthavepassgrid">
+				<h3><small>Don't have PassGrid?</small></h3>
+				<hr>
+				<p>If you haven't signed up with PassGrid before, go to <a href="http://www.passgrid.com"><span class="label secondary radius">www.passgrid.com</span></a> on your phone and enter your email address.</p>
+				<a href="#" class="button">I'm lazy, let me scan a QR code</a>
+			</div>
 		</div>
 	</div>
 
@@ -79,5 +88,6 @@
 
   <!-- Application Javascript, safe to override -->
   <script src="javascripts/foundation/app.js"></script>
+  <script>document.write('<script src="http://localhost:35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>
