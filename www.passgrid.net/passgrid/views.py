@@ -78,7 +78,7 @@ def signup(request, template_name="home.html"):
                                                    defaults=defaults)
 
         try:
-            send_verification_email(user)
+            send_verification_email(request, user)
         except Exception, err:
             errors = form._errors.setdefault(forms.forms.NON_FIELD_ERRORS,
                                              forms.util.ErrorList())

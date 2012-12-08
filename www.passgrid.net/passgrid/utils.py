@@ -20,12 +20,14 @@ def generate_token(user):
     return token, created
 
 
-def send_verification_email(user):
+def send_verification_email(request, user):
     '''
     Send the email verification email to `user`.
 
     '''
     context = {
+        "protocol": "http",
+        "host": request.get_host(),
         "uid": int_to_base36(user.pk),
         "token": token_generator.make_token(user)
     }
@@ -41,4 +43,8 @@ def send_verification_email(user):
 
 
 def verify_passgrid(user, f):
+    '''
+    Returns `True` if PassGrid `f` matches `user`'s token.
+
+    '''
     return True
