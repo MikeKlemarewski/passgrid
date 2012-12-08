@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import render_to_string
@@ -48,3 +50,10 @@ def verify_passgrid(user, f):
 
     '''
     return True
+
+def json_response(data, status_code=200):
+    data["status"] = status_code
+    body = json.dumps(data)
+    response = HttpResponse(body, mimetype="application/json")
+    response.status_code = status_code
+    return response
