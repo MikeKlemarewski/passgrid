@@ -7,16 +7,59 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
+from django.contrib.auth import login as django_login, get_backends
+from django.contrib.auth.decorators import login_required
 
-from .forms import UserForm
+from .forms import UserForm, LoginForm
 from .models import Token
+from .utils import generate_token, send_verification_email, \
+                    verify_passgrid
 
 
 ###
 # Views
 ###
 
-def home(request, template_name="home.html"):
+def login(request):
+    '''
+    An example login page using Passgrid.
+
+    '''
+    form = LoginForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        email = form.cleaned_data["email"]
+        # email = "john@mobify.com"
+        user = User.objects.get(email=email)
+        passgrid = request.FILES['passgrid']
+        verified = verify_passgrid(user, passgrid)
+
+        if verified:
+            backend = get_backends()[0]
+            user.backend = '%s.%s' % (backend.__module__, backend.__class__.__name__)
+            django_login(request, user)
+            return HttpResponseRedirect("/protected/")
+
+
+        errors = form._errors.setdefault(forms.forms.NON_FIELD_ERRORS,
+                                         forms.util.ErrorList())
+        errors.append(unicode("YOU MESSED UP."))
+
+
+    context = {
+        "form": form
+    }
+
+    return render(request, "login.html", context)
+
+@login_required
+def protected(request):
+    '''
+    An example protected resource page.
+
+    '''
+    return render(request, "protected.html")
+
+def signup(request, template_name="home.html"):
     '''
     Allow the user to send an email verification link.
 
@@ -69,37 +112,3 @@ def verify(request, uidb36, verification_token):
         return render(request, "win.html", context)
 
     return render(request, "fail.html")
-
-###
-# UTILS
-###
-
-def generate_token(user):
-    token = "[[0,4210752,8421504,12632256],[0,4194304,8388608,12582912],[0,16384,32768,49152],[0,64,128,192]]"
-
-    defaults = {
-        "token": token
-    }
-
-    token, created = Token.objects.get_or_create(user=user, defaults=defaults)
-    return token, created
-
-
-def send_verification_email(user):
-    '''
-    Send the email verification email to `user`.
-
-    '''
-    context = {
-        "uid": int_to_base36(user.pk),
-        "token": token_generator.make_token(user)
-    }
-
-    subject = render_to_string("email_subject.txt", context)
-    message = render_to_string("email_message.txt", context)
-
-
-    from_email = "hello@www.passgrid.net"
-    recipient_list = [user.email]
-
-    send_mail(subject, message, from_email, recipient_list)
