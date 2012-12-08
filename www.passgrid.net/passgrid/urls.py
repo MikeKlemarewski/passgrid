@@ -5,10 +5,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns("passgrid.views",
+    url(r'^home/$', "home"),
+
     url(r'^$', "login"),
     url(r'^accounts/login/$', "login"),
-
     url(r'^protected/$', "protected"),
+    url(r'^mobile/$', "mobile"),
     url(r'^signup/$', "signup"),
     url(r'^verify/(?P<uidb36>[0-9A-Za-z]+)-(?P<verification_token>.+)/$', 'verify', {}, 'verify'),
     url(r'^admin/', include(admin.site.urls)),
