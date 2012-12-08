@@ -1,1 +1,1 @@
-http://127.0.0.1:8000/verify/{{ uid }}-{{ token }}/
+{{ protocol }}://{{ host }}/verify/{{ uid }}-{{ token }}/

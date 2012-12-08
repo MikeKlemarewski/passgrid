@@ -1,13 +1,48 @@
 body.grid {
     background: black;
+
+    .top-bar {
+        padding: 0 10px;
+        h1.logo {
+            color: white;
+            font-size: 14px;
+        }
+    }
     #grid {
+        padding: 0;
         div {
             float: left;
             width: 25%;
             height: 0;
             padding-bottom: 25%;
 
-            background: red;
+            &:nth-child(1) {
+                background: lightblue;
+            }
+            &:nth-child(2) {
+                background: brown;
+            }
+            &:nth-child(3) {
+                background: orange;
+            }
+            &:nth-child(4) {
+                background: CornflowerBlue;
+            }
+            &:nth-child(5) {
+                background: coral;
+            }
+            &:nth-child(9) {
+                background: lightblue;
+            }
+            &:nth-child(8) {
+                background: brown;
+            }
+            &:nth-child(7) {
+                background: lightblue;
+            }
+            &:nth-child(6) {
+                background: CornflowerBlue;
+            }
         }
     }
 }
