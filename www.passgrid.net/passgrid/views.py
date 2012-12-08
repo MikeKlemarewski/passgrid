@@ -9,10 +9,12 @@ from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
 
 from .forms import UserForm
+from .models import Token
 
 
-def mobile(request, template_name="mobile.html"):
-    return render(request, template_name)
+###
+# Views
+###
 
 def home(request, template_name="home.html"):
     '''
@@ -47,7 +49,7 @@ def home(request, template_name="home.html"):
     }
     return render(request, template_name, context)
 
-def verify(request, uidb36, token, template_name="verify.html"):
+def verify(request, uidb36, verification_token):
     '''
     Verify an email verification link.
 
@@ -58,16 +60,29 @@ def verify(request, uidb36, token, template_name="verify.html"):
     except (ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    if user is not None and token_generator.check_token(user, token):
-        verified = True
-    else:
-        verified = False
+    if user is not None and token_generator.check_token(user,
+                                                        verification_token):
+        token, created = generate_token(user)
+        context = {
+            "token": token.token
+        }
+        return render(request, "win.html", context)
 
-    context = {
-        "verified": verified
+    return render(request, "fail.html")
+
+###
+# UTILS
+###
+
+def generate_token(user):
+    token = "[[0,4210752,8421504,12632256],[0,4194304,8388608,12582912],[0,16384,32768,49152],[0,64,128,192]]"
+
+    defaults = {
+        "token": token
     }
 
-    return render(request, template_name, context)
+    token, created = Token.objects.get_or_create(user=user, defaults=defaults)
+    return token, created
 
 
 def send_verification_email(user):
