@@ -6,6 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns("passgrid.views",
     url(r'^$', "home"),
+    url(r'^mobile/$', "mobile"),
+
     url(r'^verify/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'verify', {}, 'verify'),
     url(r'^admin/', include(admin.site.urls)),
 )

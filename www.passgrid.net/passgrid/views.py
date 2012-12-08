@@ -11,6 +11,9 @@ from django.utils.http import int_to_base36, base36_to_int
 from .forms import UserForm
 
 
+def mobile(request, template_name="mobile.html"):
+    return render(request, template_name)
+
 def home(request, template_name="home.html"):
     '''
     Allow the user to send an email verification link.
