@@ -26,7 +26,7 @@
                     <video id="video" autoplay></video>
                     <div class="overlay visible">
                         <div class="verify">
-                            <a id="verify" href="#" class="button large success">
+                            <a id="login" href="#" class="button large success">
                                 My phone is my passport, verify me.
                             </a>
                         </div>
@@ -63,10 +63,10 @@
             <div class="donthavepassgrid">
                 <h3><small>Don't have PassGrid?</small></h3>
                 <p><strong>Sign up in seconds.</strong> Click the <span class="label">Send</span> button below and we'll send you an email to verify you are who you say you are. You'll get a link in your inbox—open it on your phone and you can sign in right away.</p>
-                <form method="post" action="/signup/">
+                <form id="signup-form" method="post" action="/signup/">
                     {% csrf_token %}
-                    <input type="hidden" name="email" value="john@mobify.com" />
-                    <button id="send" class="button">Send me a PassGrid</a>
+                    <input type="text" name="email" value="john@mobify.com" />
+                    <button id="signup" class="button">Send me a PassGrid</a>
                 </form>
             </div>
         </div>

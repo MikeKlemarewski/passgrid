@@ -42,19 +42,35 @@ var capture = function() {
     context.drawImage(video, 0, 0);
 };
 
+
+getStream(win, fail);
+
+/**
+ * Signup, send the email link.
+ */
+var $signup = $("#signup").on("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var $xhr = $.ajax({
+        type: "POST",
+        url: "/signup/",
+        data: $("#signup-form").serialize(),
+        success: function() {
+            $signup.text("Sent");
+        }
+    });
+
+    return false;
+});
+
 /**
  * Get the email and photo then submit them to the server.
  */
-var submitLogin = function(form) {
+var $login = $("#login").on("click", function() {
     capture();
 
-
-    var csrftoken = document.querySelector("input[name=csrfmiddlewaretoken]").value;
-    var email = document.querySelector("#email").value;
-
-
-    console.log('SUBMITING:', csrftoken, email);
-
+    var email = $("#email").val();
     var data = canvas.toDataURL("image/png");
     var formData = new FormData(form);
     formData.append("passgrid", data);
@@ -62,30 +78,21 @@ var submitLogin = function(form) {
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", ".", true);
-    // CSRF_REQUEST_WITH
-
-    // Make django happy.
+    // Make django happy!
     xhr.setRequestHeader("X-CSRFToken", csrftoken);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    xhr.onload = function(e) {
-    };
-
-
-    // multipart/form-data
     xhr.send(formData);
     return false;
-};
+});
 
-getStream(win, fail);
+/**
+ * Get AJAX ready for Django.
+ */
+var csrftoken = $("input[name=csrfmiddlewaretoken]").val();
 
-document.getElementById("verify").onclick = function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    submitLogin();
-};
-
-document.getElementById("send").onclick = function(event) {
-    //event.preventDefault();
-    //event.stopPropagation();
-    //submitLogin();
-};
+$.ajaxSetup({
+    crossDomain: false,
+    beforeSend: function(xhr, settings) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    }
+});
