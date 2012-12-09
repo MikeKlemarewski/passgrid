@@ -127,11 +127,10 @@ def verify(request, uidb36, verification_token):
                                                         verification_token):
         token, created = generate_token(user)
         if created:
-            import pdb; pdb.set_trace()
             m = hashlib.md5()
-            m.update(token)
+            m.update(str(token.token))
             filename = m.hexdigest()
-            subprocess.spawn(['lib/phantomjs/bin/phantomjs', 'lib/capture.js', request.build_absolute_uri(), filename])
+            subprocess.call(['lib/phantomjs/bin/phantomjs', 'lib/capture.js', request.build_absolute_uri(), filename])
         context = {
             "token": token.token
         }
