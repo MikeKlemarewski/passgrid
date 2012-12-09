@@ -42,19 +42,32 @@ var capture = function() {
     context.drawImage(video, 0, 0);
 };
 
+/**
+ * Get the email and photo then submit them to the server.
+ */
 var submitLogin = function(form) {
     capture();
+
+
+    var csrftoken = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+    var email = document.querySelector("#email").value;
+
+
+    console.log('SUBMITING:', csrftoken, email);
 
     var data = canvas.toDataURL("image/png");
     var formData = new FormData(form);
     formData.append("passgrid", data);
+    formData.append("email", email);
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", ".", true);
     // CSRF_REQUEST_WITH
+
+    // Make django happy.
+    xhr.setRequestHeader("X-CSRFToken", csrftoken);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.onload = function(e) {
-        console.log("onload")
-        // debugger;;
     };
 
 

@@ -11,4 +11,5 @@ class LoginForm(forms.Form):
 
     '''
     email = forms.EmailField(initial="john@mobify.com")
-    passgrid = forms.FileField()
+    # passgrid = forms.FileField()
+    passgrid = forms.CharField()

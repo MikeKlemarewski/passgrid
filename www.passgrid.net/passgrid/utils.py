@@ -2,6 +2,7 @@ import json
 
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
 
