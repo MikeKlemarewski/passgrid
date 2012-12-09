@@ -25,43 +25,50 @@ var getStream = function(win, fail) {
 var win = function(stream) {
     var source = isWebkit ? webkitURL.createObjectURL(stream) : stream;
     video.src = source;
-
-    setTimeout(snap, 1000);
-
+    // setTimeout(snap, 1000);
 };
-
 
 var fail = function() {
     console.log("BOOM", arguments)
     alert("BOOM");
 };
 
-var snap = function() {
+/**
+ * Grab data from the canvas.
+ */
+var capture = function() {
     var context = canvas.getContext("2d");
     context.clearRect(0, 0);
     context.drawImage(video, 0, 0);
 };
 
-function sendForm(form) {
-  var data = canvas.toDataURL('image/png');
-  var formData = new FormData( form);
-  formData.append('passgrid', data);
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/', true);
-  xhr.onload = function(e) { 
-    console.log("onload")
-  };
+var submitLogin = function(form) {
+    capture();
 
-  xhr.send(formData);  // multipart/form-data 
-  return false;
-}
+    var data = canvas.toDataURL("image/png");
+    var formData = new FormData(form);
+    formData.append("passgrid", data);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", ".", true);
+    // CSRF_REQUEST_WITH
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.onload = function(e) {
+        console.log("onload")
+        // debugger;;
+    };
+
+
+    // multipart/form-data
+    xhr.send(formData);
+    return false;
+};
 
 getStream(win, fail);
 
-document.getElementById("snap").onclick = function(event) {
+document.getElementById("verify").onclick = function(event) {
     event.preventDefault();
     event.stopPropagation();
-    snap();
+    submitLogin();
 };
 
 

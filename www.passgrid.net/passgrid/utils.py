@@ -11,14 +11,18 @@ from .models import Token
 # UTILS
 ###
 
-def generate_token(user):
+def get_token():
     token = []
-    for i in range(0,3)
-      subtoken = []
-      for j in range(0,3)
-        token[i] = subtoken
-        token[i][j] = random.uniform(0,16777215)
- 
+    for i in range(0,3):
+        subtoken = []
+        for j in range(0,3):
+            token[i] = subtoken
+            token[i][j] = random.uniform(0,16777215)
+    return token
+
+def generate_token(user):
+
+
     defaults = {
         "token": token
     }
