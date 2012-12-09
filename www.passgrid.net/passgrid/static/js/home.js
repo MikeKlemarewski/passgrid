@@ -25,12 +25,10 @@ var getStream = function(win, fail) {
 var win = function(stream) {
     var source = isWebkit ? webkitURL.createObjectURL(stream) : stream;
     video.src = source;
-    // setTimeout(snap, 1000);
 };
 
 var fail = function() {
-    console.log("BOOM", arguments)
-    alert("BOOM");
+    alert("Couldn't connect to camera.");
 };
 
 /**

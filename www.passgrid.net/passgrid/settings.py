@@ -1,6 +1,9 @@
 import os
 
 
+
+
+
 PROJECT_ROOT = os.path.join(os.path.sep, *os.path.abspath(__file__).split(os.path.sep)[:-2])
 
 DEBUG = True
@@ -8,7 +11,9 @@ TEMPLATE_DEBUG = DEBUG
 
 ### THINGS WE MIGHT CHANGE:
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# python -m smtpd -n -c DebuggingServer localhost:1025
 
 
 
@@ -99,3 +104,10 @@ LOGGING = {
         },
     }
 }
+
+
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
