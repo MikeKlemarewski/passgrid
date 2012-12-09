@@ -12,8 +12,13 @@ from .models import Token
 ###
 
 def generate_token(user):
-    token = "[[0,4210752,8421504,12632256],[0,4194304,8388608,12582912],[0,16384,32768,49152],[0,64,128,192]]"
-
+    token = []
+    for i in range(0,3)
+      subtoken = []
+      for j in range(0,3)
+        token[i] = subtoken
+        token[i][j] = random.uniform(0,16777215)
+ 
     defaults = {
         "token": token
     }
