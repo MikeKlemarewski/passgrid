@@ -1,5 +1,6 @@
 import random
 import json
+import hashlib
 
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.mail import send_mail, BadHeaderError
@@ -11,6 +12,7 @@ from django.utils.http import int_to_base36, base36_to_int
 # import cv2 as cv
 
 from .models import Token
+
 
 ###
 # UTILS
@@ -66,6 +68,16 @@ def verify_passgrid(user, f):
     Returns `True` if PassGrid `f` matches `user`'s token.
 
     '''
+
+    token = Token.objects.filter(user=user)[0]
+    token = token.token
+
+    m = hashlib.md5()
+    m.update(str(token))
+    token_image = "image/%s.png" % m.hexdigest()
+
+    result = template_match(token_image, f)
+
     return True
 
 def json_response(data, status_code=200):
@@ -77,6 +89,8 @@ def json_response(data, status_code=200):
 
 
 def template_match(test_image, expected_image):
+    # from imagematch import template_match
+
     test_image_handle = cv.imread(test_image, 1)
     expected_image_handle = cv.imread(expected_image, 1)
 

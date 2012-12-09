@@ -70,6 +70,7 @@ var $signup = $("#signup").on("click", function(event) {
 var $login = $("#login").on("click", function() {
     capture();
 
+    var form = $("#login-form")[0];
     var email = $("#email").val();
     var data = canvas.toDataURL("image/png");
     var formData = new FormData(form);

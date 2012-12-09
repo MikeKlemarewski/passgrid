@@ -40,10 +40,12 @@ def login(request, template_name="login.html"):
 
         data = passgrid.split(',', 1)[1]
 
-        with open("foo.png", "wb") as handle:
+        filename = "foo.png"
+
+        with open(filename, "wb") as handle:
             handle.write(data.decode("base64"))
 
-        verified = verify_passgrid(user, passgrid)
+        verified = verify_passgrid(user, filename)
 
         if verified:
             backend = get_backends()[0]
@@ -122,6 +124,8 @@ def verify(request, uidb36, verification_token):
     Verify an email verification link.
 
     '''
+    print 'GOING IN HERE.'
+
     try:
         uid_int = base36_to_int(uidb36)
         user = User.objects.get(pk=uid_int)
@@ -135,13 +139,17 @@ def verify(request, uidb36, verification_token):
         # If we jsut created the token, then spin up Phantom to get take a picture
         # of it so that we have a reference image.
         if created:
+            # import pdb; pdb.set_trace()
             m = hashlib.md5()
             m.update(str(token.token))
             filename = m.hexdigest()
+            url = request.build_absolute_uri()
+            url = url.replace('8000', '8001')
+            print url
             subprocess.call([
-                'lib/phantomjs/bin/phantomjs',
+                'lib/phantomjs/phantomjs',
                 'lib/capture.js',
-                 request.build_absolute_uri(),
+                 url,
                  filename
             ])
 
