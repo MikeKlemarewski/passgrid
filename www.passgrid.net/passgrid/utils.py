@@ -18,7 +18,10 @@ def get_token():
         subtoken = [None]*4
         for j in range(0,4):
             token[i] = subtoken
-            token[i][j] = int(random.uniform(0,16777215))
+            r = int(random.uniform(40,255))
+            g = int(random.uniform(40,255))
+            b = int(random.uniform(40,255))
+            token[i][j] = r*256*256 + g * 256 + b
     return token
 
 def generate_token(user):
