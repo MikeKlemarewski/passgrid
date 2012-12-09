@@ -57,13 +57,17 @@
         <div class="four columns">
             <div class="howtouse">
                 <h3><small>How do I use PassGrid?</small></h3>
-                <p>Just open PassGrid on your device and hold it up to your computer's camera. Line up the grid and click 'Verify' to sign in.</p>
+                <p>Just open PassGrid on your device and hold it up to your computer's camera. Line up the grid and click <span class="label success">Verify</span> to sign in.</p>
             </div>
             <hr>
             <div class="donthavepassgrid">
                 <h3><small>Don't have PassGrid?</small></h3>
                 <p><strong>Sign up in seconds.</strong> Click the <span class="label">Send</span> button below and we'll send you an email to verify you are who you say you are. You'll get a link in your inbox—open it on your phone and you can sign in right away.</p>
-                <a href="#" class="button">Send me a PassGrid</a>
+                <form method="post" action="/signup/">
+                    {% csrf_token %}
+                    <input type="hidden" name="email" value="john@mobify.com" />
+                    <button id="send" class="button">Send me a PassGrid</a>
+                </form>
             </div>
         </div>
     </div>
@@ -84,19 +88,4 @@
     <script src="/static/js/jquery-1.8.3.min.js"></script>
     <script src="/static/js/home.js"></script>
 
-
-
-
-<!--     <h1>LOGIN TO YOUR SECURE GMAIL</h1>
-
-
-    <form method="post" action="." enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" />
-    </form>
-
-
-    <a href="/protected/">PROTECTED</a>
- -->
 {% endblock %}

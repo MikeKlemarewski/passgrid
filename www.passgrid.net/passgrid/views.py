@@ -28,12 +28,21 @@ def login(request, template_name="login.html"):
     An example login page using Passgrid.
 
     '''
-    form = LoginForm(request.POST or None, request.FILES or None)
+    # form = LoginForm(request.POST or None, request.FILES or None)
+    form = LoginForm(request.POST or None)
     if form.is_valid():
         email = form.cleaned_data["email"]
         # email = "john@mobify.com"
         user = User.objects.get(email=email)
-        passgrid = request.FILES['passgrid']
+
+        # b64'd image
+        passgrid = request.POST['passgrid']
+
+        data = passgrid.split(',', 1)[1]
+
+        with open("foo.png", "wb") as handle:
+            handle.write(data.decode("base64"))
+
         verified = verify_passgrid(user, passgrid)
 
         if verified:
@@ -81,8 +90,8 @@ def signup(request, template_name="signup.html"):
 
     '''
     form = UserForm(request.POST or None)
-
     if form.is_valid():
+
         email = form.cleaned_data["email"]
 
         defaults = {
@@ -122,11 +131,20 @@ def verify(request, uidb36, verification_token):
     if user is not None and token_generator.check_token(user,
                                                         verification_token):
         token, created = generate_token(user)
+
+        # If we jsut created the token, then spin up Phantom to get take a picture
+        # of it so that we have a reference image.
         if created:
             m = hashlib.md5()
             m.update(str(token.token))
             filename = m.hexdigest()
-            subprocess.call(['lib/phantomjs/bin/phantomjs', 'lib/capture.js', request.build_absolute_uri(), filename])
+            subprocess.call([
+                'lib/phantomjs/bin/phantomjs',
+                'lib/capture.js',
+                 request.build_absolute_uri(),
+                 filename
+            ])
+
         context = {
             "token": token.token
         }

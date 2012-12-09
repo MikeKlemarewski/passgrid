@@ -1,1 +1,29 @@
-PROTECTED
+{% extends "base.html" %}
+
+{% block body %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+<body class="success">
+
+    <div class="row">
+        <div class="six columns centered panel">
+            Please wait while we sign you in.
+        </div>
+    </div>
+
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+
+    <script>
+        (function() {
+            window.location.href = "http://www.gmail.com";
+        })();
+    </script>
+{% endblock %}

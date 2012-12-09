@@ -1,10 +1,15 @@
+import random
 import json
 import hashlib
 
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
+
+
+# import cv2 as cv
 
 from .models import Token
 from imagematch import template_match
@@ -14,12 +19,15 @@ from imagematch import template_match
 ###
 
 def get_token():
-    token = []
-    for i in range(0,3):
-        subtoken = []
-        for j in range(0,3):
+    token = [None]*4
+    for i in range(0,4):
+        subtoken = [None]*4
+        for j in range(0,4):
             token[i] = subtoken
-            token[i][j] = random.uniform(0,16777215)
+            r = int(random.uniform(40,255))
+            g = int(random.uniform(40,255))
+            b = int(random.uniform(40,255))
+            token[i][j] = r*256*256 + g * 256 + b
     return token
 
 def generate_token(user):
@@ -79,3 +87,19 @@ def json_response(data, status_code=200):
     response = HttpResponse(body, mimetype="application/json")
     response.status_code = status_code
     return response
+
+
+def template_match(test_image, expected_image):
+    test_image_handle = cv.imread(test_image, 1)
+    expected_image_handle = cv.imread(expected_image, 1)
+
+    # Flip template, because pic from webcam will be backwards.
+    template = cv.flip(template, 1)
+
+    result = cv.matchTemplate(img, template, cv.TM_CCORR_NORMED)
+    result8 = cv.normalize(result, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U)
+
+    minVal, maxVal, minLoc, maxLoc = cv.minMaxLoc(result)
+
+    matched = maxVal > 0.73
+    return matched
