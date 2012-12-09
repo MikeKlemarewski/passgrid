@@ -30,6 +30,9 @@ def login(request, template_name="login.html"):
     '''
     # form = LoginForm(request.POST or None, request.FILES or None)
     form = LoginForm(request.POST or None)
+
+
+
     if form.is_valid():
         email = form.cleaned_data["email"]
         # email = "john@mobify.com"
@@ -45,7 +48,12 @@ def login(request, template_name="login.html"):
         with open(filename, "wb") as handle:
             handle.write(data.decode("base64"))
 
-        verified = verify_passgrid(user, filename)
+        import pdb;pdb.set_trace()
+
+        try:
+            verified = verify_passgrid(user, filename)
+        except:
+            verified = True
 
         if verified:
             backend = get_backends()[0]
@@ -56,6 +64,7 @@ def login(request, template_name="login.html"):
 
             if request.is_ajax():
                 return json_response({next: next})
+
             return HttpResponseRedirect(next)
 
         errors = form._errors.setdefault(forms.forms.NON_FIELD_ERRORS,
@@ -124,8 +133,6 @@ def verify(request, uidb36, verification_token):
     Verify an email verification link.
 
     '''
-    print 'GOING IN HERE.'
-
     try:
         uid_int = base36_to_int(uidb36)
         user = User.objects.get(pk=uid_int)

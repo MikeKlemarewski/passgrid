@@ -66,6 +66,9 @@ var $signup = $("#signup").on("click", function(event) {
  * Get the email and photo then submit them to the server.
  */
 var $login = $("#login").on("click", function() {
+
+    // debugger;
+
     capture();
 
     var form = $("#login-form")[0];
@@ -81,6 +84,16 @@ var $login = $("#login").on("click", function() {
     xhr.setRequestHeader("X-CSRFToken", csrftoken);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.send(formData);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            // alert(xhr.response);
+            if (/200/.test(xhr.response)) {
+                window.location = '/protected/'
+            }
+        }
+    }
+
     return false;
 });
 

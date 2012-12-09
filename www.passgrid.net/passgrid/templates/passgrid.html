@@ -65,7 +65,7 @@
                 <p><strong>Sign up in seconds.</strong> Click the <span class="label">Send</span> button below and we'll send you an email to verify you are who you say you are. You'll get a link in your inbox—open it on your phone and you can sign in right away.</p>
                 <form id="signup-form" method="post" action="/signup/">
                     {% csrf_token %}
-                    <input type="text" name="email" value="john@mobify.com" />
+                    <input type="text" id="email" name="email" value="" placeholder="bill@bo.com" />
                     <button id="signup" class="button">Send me a PassGrid</a>
                 </form>
             </div>
@@ -73,15 +73,10 @@
     </div>
 
 
-    <form id="login-form" action="." method="post">
-        {% csrf_token %}
-        <input type="text" id="email" name="email" value="john@mobify.com" />
-        <input type="submit" id="snap" value="Login" />
-        <input type="submit" id="upload" value="Send to Server" onclick="return sendForm(this.form)">
-    </form>
-
     <div style="display: none;">
-        <!-- <video id="video" autoplay height="240" width="320"></video> -->
+        <!-- LOGIN FORM -->
+        <form id="login-form" action="." method="post">{% csrf_token %}</form>
+        <!-- SECRET CANVAS -->
         <canvas id="canvas" height="240" width="320"></canvas>
     </div>
 
