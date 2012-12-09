@@ -5,6 +5,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
+import random
 
 from .models import Token
 
@@ -13,12 +14,15 @@ from .models import Token
 ###
 
 def get_token():
-    token = []
-    for i in range(0,3):
-        subtoken = []
-        for j in range(0,3):
+    token = [None]*4
+    for i in range(0,4):
+        subtoken = [None]*4
+        for j in range(0,4):
             token[i] = subtoken
-            token[i][j] = random.uniform(0,16777215)
+            r = int(random.uniform(40,255))
+            g = int(random.uniform(40,255))
+            b = int(random.uniform(40,255))
+            token[i][j] = r*256*256 + g * 256 + b
     return token
 
 def generate_token(user):

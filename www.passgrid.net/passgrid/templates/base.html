@@ -22,6 +22,8 @@
 </head>
 {% block body %}
 {% endblock %}
+
+{% block scripts %}
 <!-- Included JS Files (Uncompressed) -->
     <script src="/static/js/jquery-1.8.3.min.js"></script>
     
@@ -58,9 +60,13 @@
     <script src="/static/js/foundation/jquery.placeholder.js"></script>
     
 
+
+
   <!-- Application Javascript, safe to override -->
   <script src="/static/js/foundation/app.js"></script>
+
+{% endblock scripts %}
+
   <script>document.write('<script src="http://localhost:35729/livereload.js?snipver=1"></' + 'script>')</script>
-  <script src="/static/js/app.js"></script>
 </body>
 </html>
