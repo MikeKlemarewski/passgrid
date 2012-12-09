@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns("passgrid.views",
     url(r'^home/$', "home"),
+    url(r'^token/$', "test_get_token"),
 
      # Example gmail logins.
     url(r'^$', "login"),

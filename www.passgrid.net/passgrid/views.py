@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm, LoginForm
 from .models import Token
 from .utils import generate_token, send_verification_email, \
-                    verify_passgrid, json_response
+                    verify_passgrid, json_response, get_token
 
 
 ###
@@ -125,3 +125,11 @@ def verify(request, uidb36, verification_token):
         return render(request, "win.html", context)
 
     return render(request, "fail.html")
+
+def test_get_token(request):
+    '''
+    A view to test token generation.
+
+    '''
+    token = get_token()
+    return HttpResponse(token)
