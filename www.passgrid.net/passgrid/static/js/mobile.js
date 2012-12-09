@@ -45,7 +45,9 @@
         return token;
     };
 
-    var token = getToken();
-    createGrid(token);
+    if(typeof TOKEN == "undefined") {
+      TOKEN = getToken();
+    }
+    createGrid(TOKEN);
 
 })();

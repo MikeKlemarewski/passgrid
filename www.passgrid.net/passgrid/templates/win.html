@@ -34,6 +34,8 @@
     </div>
 
     <div class="footer">
+        <a href="" id="externalLink">Install in secure app</a>
+      
         <p>We <3 Iron Hacker 2012!</p>
     </div>
 {% endblock %}
@@ -50,6 +52,7 @@
               return false;
             });
             window.scrollTo(0,0);
+            $('#externalLink').attr("href", "passgrid://"+TOKEN);
         });
     </script>
 

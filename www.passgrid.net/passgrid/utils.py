@@ -30,7 +30,7 @@ def get_token():
 
 def generate_token(user):
 
-
+    token = get_token()
     defaults = {
         "token": token
     }
