@@ -89,10 +89,11 @@ def json_response(data, status_code=200):
 
 
 def template_match(test_image, expected_image):
+    import cv2 as cv
     # from imagematch import template_match
 
-    test_image_handle = cv.imread(test_image, 1)
-    expected_image_handle = cv.imread(expected_image, 1)
+    img = cv.imread(test_image, 1)
+    template = cv.imread(expected_image, 1)
 
     # Flip template, because pic from webcam will be backwards.
     template = cv.flip(template, 1)
