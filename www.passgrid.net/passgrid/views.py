@@ -40,10 +40,12 @@ def login(request, template_name="login.html"):
 
         data = passgrid.split(',', 1)[1]
 
-        with open("foo.png", "wb") as handle:
+        filename = "foo.png"
+
+        with open(filename, "wb") as handle:
             handle.write(data.decode("base64"))
 
-        verified = verify_passgrid(user, passgrid)
+        verified = verify_passgrid(user, filename)
 
         if verified:
             backend = get_backends()[0]
@@ -82,6 +84,7 @@ def home(request):
     return login(request, template_name="home.html")
 
 def passgrid(request):
+    import pdb; pdb.set_trace()
     return login(request, template_name="passgrid.html")
 
 def signup(request, template_name="signup.html"):
@@ -139,7 +142,7 @@ def verify(request, uidb36, verification_token):
             m.update(str(token.token))
             filename = m.hexdigest()
             subprocess.call([
-                'lib/phantomjs/bin/phantomjs',
+                'lib/phantomjs/phantomjs',
                 'lib/capture.js',
                  request.build_absolute_uri(),
                  filename

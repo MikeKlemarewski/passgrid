@@ -32,6 +32,7 @@ def get_token():
 
 def generate_token(user):
 
+    token = get_token()
 
     defaults = {
         "token": token
@@ -73,11 +74,10 @@ def verify_passgrid(user, f):
     token = token.token
 
     m = hashlib.md5()
-    m.update(str(token.token))
+    m.update(str(token))
     token_image = "image/%s.png" % m.hexdigest()
 
     result = template_match(token_image, f)
-
 
     return True
 
