@@ -41,10 +41,6 @@ var snap = function() {
     context.drawImage(video, 0, 0);
 };
 
-
-
-getStream(win, fail);
-
 document.getElementById("snap").onclick = function(event) {
     event.preventDefault();
     event.stopPropagation();
