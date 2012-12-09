@@ -6086,3 +6086,12 @@ body.signin #video {
 body.signin label[for="rememberme"] .custom.checkbox {
   margin-right: 10px;
 }
+
+/* line 1, ../../sass/pages/_success.scss */
+body.success {
+  padding-top: 100px;
+}
+/* line 3, ../../sass/pages/_success.scss */
+body.success .panel {
+  text-align: center;
+}
