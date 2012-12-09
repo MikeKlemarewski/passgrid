@@ -14,19 +14,16 @@ video, canvas{
   </head>
   <body>
     <form action="." method="post">
+        {% csrf_token %}
         <input type="text" id="email" name="email" value="john@mobify.com" />
-
         <input type="submit" id="snap" value="Login" />
         <input type="submit" id="upload" value="Send to Server" onclick="return sendForm(this.form)">
-        {% csrf_token %}
-
     </form>
 
     <section>
       <video id="video" autoplay height="240" width="320"></video>
       <canvas id="canvas" height="240" width="320"></canvas>
     </section>
-
 
     <script src="/static/js/jquery-1.8.3.min.js"></script>
     <script src="/static/js/home.js"></script>
