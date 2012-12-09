@@ -6067,22 +6067,33 @@ body.signin #authvideo .overlay .verify {
   z-index: 502;
   bottom: 0;
   width: 100%;
+  padding-right: 1px;
 }
-/* line 47, ../../sass/pages/_signin.scss */
+/* line 48, ../../sass/pages/_signin.scss */
 body.signin #authvideo .overlay .verify a {
   display: block;
 }
-/* line 52, ../../sass/pages/_signin.scss */
+/* line 53, ../../sass/pages/_signin.scss */
 body.signin #authvideo .overlay.visible {
   display: block;
 }
-/* line 57, ../../sass/pages/_signin.scss */
+/* line 58, ../../sass/pages/_signin.scss */
 body.signin #video {
   position: absolute;
   z-index: 500;
   width: 100%;
+  padding-right: 1px;
 }
-/* line 64, ../../sass/pages/_signin.scss */
+/* line 66, ../../sass/pages/_signin.scss */
 body.signin label[for="rememberme"] .custom.checkbox {
   margin-right: 10px;
+}
+
+/* line 1, ../../sass/pages/_success.scss */
+body.success {
+  padding-top: 100px;
+}
+/* line 3, ../../sass/pages/_success.scss */
+body.success .panel {
+  text-align: center;
 }
