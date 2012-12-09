@@ -4,6 +4,7 @@ from django.contrib.auth.tokens import default_token_generator as token_generato
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
+import random
 
 from .models import Token
 
@@ -11,8 +12,17 @@ from .models import Token
 # UTILS
 ###
 
+def get_token():
+    token = [None]*4
+    for i in range(0,4):
+        subtoken = [None]*4
+        for j in range(0,4):
+            token[i] = subtoken
+            token[i][j] = int(random.uniform(0,16777215))
+    return token
+
 def generate_token(user):
-    token = "[[0,4210752,8421504,12632256],[0,4194304,8388608,12582912],[0,16384,32768,49152],[0,64,128,192]]"
+
 
     defaults = {
         "token": token

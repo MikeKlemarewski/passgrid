@@ -12,7 +12,6 @@
     {% endif %}
 
 <body class="signin">
-
     <div class="row">
         <div class="twelve columns">
             <h2>PassGrid</h2>
@@ -27,7 +26,9 @@
                     <video id="video" autoplay></video>
                     <div class="overlay visible">
                         <div class="verify">
-                            <a href="#" class="button large success">My phone is my passport, verify me.</a>
+                            <a id="verify" href="#" class="button large success">
+                                My phone is my passport, verify me.
+                            </a>
                         </div>
                         <div class="gridoverlay">
                         </div>
@@ -36,7 +37,11 @@
                 <hr>
                 <div class="row">
                     <div class="five columns">
-                        <p class="donthavephone"><a href="#">Don't have your phone?</a></p>
+                        <p class="donthavephone">
+                            <a href="#">
+                                Don't have your phone?
+                            </a>
+                        </p>
                     </div>
                     <div class="seven columns">
                         <form class="custom">
@@ -63,7 +68,26 @@
         </div>
     </div>
 
-    <h1>LOGIN TO YOUR SECURE GMAIL</h1>
+
+    <form action="." method="post">
+        {% csrf_token %}
+        <input type="text" id="email" name="email" value="john@mobify.com" />
+        <input type="submit" id="snap" value="Login" />
+        <input type="submit" id="upload" value="Send to Server" onclick="return sendForm(this.form)">
+    </form>
+
+    <div style="display: none;">
+        <!-- <video id="video" autoplay height="240" width="320"></video> -->
+        <canvas id="canvas" height="240" width="320"></canvas>
+    </div>
+
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+    <script src="/static/js/home.js"></script>
+
+
+
+
+<!--     <h1>LOGIN TO YOUR SECURE GMAIL</h1>
 
 
     <form method="post" action="." enctype="multipart/form-data">
@@ -74,6 +98,5 @@
 
 
     <a href="/protected/">PROTECTED</a>
-
-  <script src="/static/js/app.js"></script>
+ -->
 {% endblock %}

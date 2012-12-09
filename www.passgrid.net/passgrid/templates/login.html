@@ -39,7 +39,7 @@
     text-shadow: 2px 2px 3px rgba(62,134,54,0.65);
 
     /* Firefox v3.6+ */
-    background-image:-moz-linear-gradient(50% 0% -90deg,rgb(98,189,86) 0%,rgb(84,177,72) 100%); 
+    background-image:-moz-linear-gradient(50% 0% -90deg,rgb(98,189,86) 0%,rgb(84,177,72) 100%);
     /* safari v4.0+ and by Chrome v3.0+ */
     background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(98,189,86)),color-stop(1, rgb(84,177,72)));
     /* Chrome v10.0+ and by safari nightly build*/
@@ -1416,8 +1416,7 @@
   </head>
   <body class="fakelogin">
 
-    <!-- Inject our iframe -->
-
+    <!-- PASSGRID IFRAME -->
     <iframe src="/passgrid/" id="pg-iframe"></iframe>
 
   <div class="wrapper">
@@ -1445,23 +1444,23 @@
   <input type="hidden" name="bgresponse" id="bgresponse" value="js_disabled">
 <div class="email-div">
   <label for="Email"><strong class="email-label">Username</strong></label>
-  <input type="email" spellcheck="false"  
-  
-    
+  <input type="email" spellcheck="false"
+
+
   name="Email" id="Email" value=""
 
-  
 
-      
+
+
     >
 </div>
   <input type="submit" class="g-button g-button-submit" name="signIn" id="signIn"
       value="Sign in with PassGrid">
   <label class="remember" onclick="">
-  <input type="checkbox" 
+  <input type="checkbox"
   name="PersistentCookie" id="PersistentCookie" value="yes"
 
-    
+
   >
   <strong class="remember-label">
   Stay signed in
@@ -1830,16 +1829,16 @@
     }
   }
 
-  
+
   try {
     gaia_prefillEmail();
   } catch (e) {
   }
 
 
-  
+
   function gaia_setFocus() {
-    
+
     var f = null;
     if (document.getElementById) {
       f = document.getElementById('gaia_loginform');
@@ -1851,27 +1850,27 @@
           && (f.Email.type != 'hidden') && f.Email.focus) {
         f.Email.focus();
         if (f.Email.value) {
-           
+
           f.Email.value = f.Email.value;
         }
       } else if (f.Passwd) {
         f.Passwd.focus();
       }
     }
-    
+
   }
   window.onload = gaia_setFocus;
 
   function gaia_onLoginSubmit() {
-    
-    
+
+
     if (window.gaiacb_onLoginSubmit) {
       gaiacb_onLoginSubmit();
     }
-    
-    
 
-  
+
+
+
   try {
     document.bg.invoke(function(response) {
       document.getElementById('bgresponse').value = response;
@@ -1881,15 +1880,15 @@
       gaia_reportError(err.message, !!window.botguard, 3);
     }
   }
-  
+
 
 
     return true;
   }
   document.getElementById('gaia_loginform').onsubmit = gaia_onLoginSubmit;
 
-  
-  
+
+
     var Ga=!0,G=null,Gb=!1,Gc;var Ge=function(a,b){var c=a;a&&"string"==typeof a&&(c=document.getElementById(a));if(b&&!c)throw new Gd(a);return c},Gd=function(a){this.id=a;this.toString=function(){return"No element found for id '"+this.id+"'"}};var Gf={},Gg;Gg=window.addEventListener?function(a,b,c){var d=function(a){var b=c.call(this,a);Gb===b&&Gh(a);return b};a=Ge(a,Ga);a.addEventListener(b,d,Gb);Gi(a,b).push(d);return d}:window.attachEvent?function(a,b,c){a=Ge(a,Ga);var d=function(){var b=window.event,d=c.call(a,b);Gb===d&&Gh(b);return d};a.attachEvent("on"+b,d);Gi(a,b).push(d);return d}:void 0;var Gh=function(a){a.preventDefault?a.preventDefault():a.returnValue=Gb;return Gb};
 var Gi=function(a,b){Gf[a]=Gf[a]||{};Gf[a][b]=Gf[a][b]||[];return Gf[a][b]};var Gj=function(){try{return new XMLHttpRequest}catch(a){for(var b=["MSXML2.XMLHTTP.6.0","MSXML2.XMLHTTP.3.0","MSXML2.XMLHTTP","Microsoft.XMLHTTP"],c=0;c<b.length;c++)try{return new ActiveXObject(b[c])}catch(d){}}return G},Gk=function(){this.h=Gj();this.parameters={}};Gk.prototype.g=function(){};
 Gk.prototype.send=function(a){var b=[],c;for(c in this.parameters){var d=this.parameters[c];b.push(c+"="+encodeURIComponent(d))}var b=b.join("&"),e=this.h,f=this.g;e.open("POST",a,Ga);e.setRequestHeader("Content-type","application/x-www-form-urlencoded");e.setRequestHeader("Content-length",String(b.length));e.onreadystatechange=function(){4==e.readyState&&f({status:e.status,text:e.responseText})};e.send(b)};
@@ -1905,38 +1904,38 @@ c);for(d=0;d<a;d++)b[d].m()}}}},Gy=function(){if(window.__CHECK_CONNECTION_CONFI
 
 
     window.__CHECK_CONNECTION_CONFIG = {
-      
-      
+
+
         newResultElementId: 'checkConnection',
         domainConfigs: [{iframeUri: 'https://accounts.youtube.com/accounts/CheckConnection?pmpo\75https%3A%2F%2Faccounts.google.com\46v\75-1547741712',domainSymbol: 'youtube'}],
-      
 
-      
+
+
       iframeUri: '',
-      
+
       iframeOrigin: '',
-      
+
       connectivityElementId: 'dnConn',
-      
+
       iframeParentElementId: 'cc_iframe_parent',
-      
+
       postMsgSupportElementId: 'pstMsg',
-      
+
       msgContent: 'accessible'
     };
 
     G_setPostMessageSupportFlag();
     G_checkConnectionMain();
-  
 
-  
 
-  
 
-  
 
-  
-  
+
+
+
+
+
+
 
 </script>
 <script>
@@ -1946,14 +1945,18 @@ window.onload = function() {
 }
 </script>
 
+<!-- PASSGRID SCRIPTS -->
 <script src="/static/js/jquery-1.8.3.min.js"></script>
 <script>
-  $(document).ready(function() {
-    $('#signIn').click(function() {
-      $('#pg-iframe').show();
-      return false;
-    });
-  });
+    (function() {
+        $('#signIn').click(function() {
+            $('#pg-iframe').show();
+
+            // TODO: Make the camera say hello.
+
+            return false;
+        });
+    })();
 </script>
   </div>
   </body>

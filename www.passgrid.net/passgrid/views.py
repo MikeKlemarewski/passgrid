@@ -1,9 +1,12 @@
+import subprocess
+import hashlib
+
 from django import forms
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.http import int_to_base36, base36_to_int
@@ -13,16 +16,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm, LoginForm
 from .models import Token
 from .utils import generate_token, send_verification_email, \
-                    verify_passgrid, json_response
+                    verify_passgrid, json_response, get_token
 
 
 ###
 # Views
 ###
-
-def passgrid(request):
-    return render(request, "passgrid.html")
-
 
 def login(request, template_name="login.html"):
     '''
@@ -70,11 +69,11 @@ def protected(request):
     '''
     return render(request, "protected.html")
 
-
 def home(request):
     return login(request, template_name="home.html")
 
-
+def passgrid(request):
+    return login(request, template_name="passgrid.html")
 
 def signup(request, template_name="signup.html"):
     '''
@@ -123,9 +122,22 @@ def verify(request, uidb36, verification_token):
     if user is not None and token_generator.check_token(user,
                                                         verification_token):
         token, created = generate_token(user)
+        if created:
+            m = hashlib.md5()
+            m.update(str(token.token))
+            filename = m.hexdigest()
+            subprocess.call(['lib/phantomjs/bin/phantomjs', 'lib/capture.js', request.build_absolute_uri(), filename])
         context = {
             "token": token.token
         }
         return render(request, "win.html", context)
 
     return render(request, "fail.html")
+
+def test_get_token(request):
+    '''
+    A view to test token generation.
+
+    '''
+    token = get_token()
+    return HttpResponse(token)
