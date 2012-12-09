@@ -4,7 +4,6 @@
 var video = document.getElementById('video');
 var canvas = document.getElementById('canvas');
 var link = document.getElementById('control');
-var email = document.getElementById('email');
 
 var isWebkit = false;
 
@@ -42,19 +41,7 @@ var snap = function() {
     context.drawImage(video, 0, 0);
 };
 
-function sendForm(form) {
-  var data = canvas.toDataURL('image/png');
-  var formData = new FormData( form);
-  formData.append('passgrid', data);
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/', true);
-  xhr.onload = function(e) { 
-    console.log("onload")
-  };
 
-  xhr.send(formData);  // multipart/form-data 
-  return false;
-}
 
 getStream(win, fail);
 
@@ -63,5 +50,3 @@ document.getElementById("snap").onclick = function(event) {
     event.stopPropagation();
     snap();
 };
-
-
