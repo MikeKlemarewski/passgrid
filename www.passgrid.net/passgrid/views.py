@@ -90,8 +90,8 @@ def signup(request, template_name="signup.html"):
 
     '''
     form = UserForm(request.POST or None)
-
     if form.is_valid():
+
         email = form.cleaned_data["email"]
 
         defaults = {
@@ -131,11 +131,20 @@ def verify(request, uidb36, verification_token):
     if user is not None and token_generator.check_token(user,
                                                         verification_token):
         token, created = generate_token(user)
+
+        # If we jsut created the token, then spin up Phantom to get take a picture
+        # of it so that we have a reference image.
         if created:
             m = hashlib.md5()
             m.update(str(token.token))
             filename = m.hexdigest()
-            subprocess.call(['lib/phantomjs/bin/phantomjs', 'lib/capture.js', request.build_absolute_uri(), filename])
+            subprocess.call([
+                'lib/phantomjs/bin/phantomjs',
+                'lib/capture.js',
+                 request.build_absolute_uri(),
+                 filename
+            ])
+
         context = {
             "token": token.token
         }

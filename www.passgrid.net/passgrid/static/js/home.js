@@ -84,4 +84,8 @@ document.getElementById("verify").onclick = function(event) {
     submitLogin();
 };
 
-
+document.getElementById("send").onclick = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    submitLogin();
+};
