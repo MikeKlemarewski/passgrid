@@ -1,43 +1,56 @@
-<!-- <html manifest="/static/cache.manifest"> -->
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="/static/css/mobile.css" />
+{% block body %}
 
-</head>
-<body>
-
-
-    <div class="row">
-        <div class="block block11"></div>
-        <div class="block block12"></div>
-        <div class="block block13"></div>
-        <div class="block block14"></div>
+<body class="grid">
+    <div class="top-bar">
+        <h1 class="logo">PassGrid</h1>
     </div>
-    <div class="row">
-        <div class="block block21"></div>
-        <div class="block block22"></div>
-        <div class="block block23"></div>
-        <div class="block block24"></div>
-    </div>
-    <div class="row">
-        <div class="block block31"></div>
-        <div class="block block32"></div>
-        <div class="block block33"></div>
-        <div class="block block34"></div>
-    </div>
-    <div class="row">
-        <div class="block block41"></div>
-        <div class="block block42"></div>
-        <div class="block block43"></div>
-        <div class="block block44"></div>
+    <div id="grid">
+        <div class="row">
+            <div class="block block11"></div>
+            <div class="block block12"></div>
+            <div class="block block13"></div>
+            <div class="block block14"></div>
+        </div>
+        <div class="row">
+            <div class="block block21"></div>
+            <div class="block block22"></div>
+            <div class="block block23"></div>
+            <div class="block block24"></div>
+        </div>
+        <div class="row">
+            <div class="block block31"></div>
+            <div class="block block32"></div>
+            <div class="block block33"></div>
+            <div class="block block34"></div>
+        </div>
+        <div class="row">
+            <div class="block block41"></div>
+            <div class="block block42"></div>
+            <div class="block block43"></div>
+            <div class="block block44"></div>
+        </div>
     </div>
 
-    <script>TOKEN = {{ token }}</script>
+    <div class="footer">
+        <p>We <3 Iron Hacker 2012!</p>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Included JS Files (Uncompressed) -->
     <script src="/static/js/jquery-1.8.3.min.js"></script>
+    <script>TOKEN = {{ token }}</script>
     <script src="/static/js/mobile.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#signIn').click(function() {
+              $('#pg-iframe').show();
+              return false;
+            });
+            window.scrollTo(0,0);
+        });
+    </script>
 
-</body>
-</html>
+{% endblock %}
