@@ -76,7 +76,7 @@ def home(request):
 
 
 
-def signup(request, template_name="home.html"):
+def signup(request, template_name="signup.html"):
     '''
     Allow the user to send an email verification link.
 
