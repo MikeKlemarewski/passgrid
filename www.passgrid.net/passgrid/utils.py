@@ -12,7 +12,7 @@ from django.utils.http import int_to_base36, base36_to_int
 # import cv2 as cv
 
 from .models import Token
-from imagematch import template_match
+
 
 ###
 # UTILS
@@ -90,6 +90,8 @@ def json_response(data, status_code=200):
 
 
 def template_match(test_image, expected_image):
+    # from imagematch import template_match
+
     test_image_handle = cv.imread(test_image, 1)
     expected_image_handle = cv.imread(expected_image, 1)
 
